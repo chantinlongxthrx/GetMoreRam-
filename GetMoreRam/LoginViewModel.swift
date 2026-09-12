@@ -5,8 +5,9 @@
 //  Created by s s on 2025/3/15.
 //
 import SwiftUI
-import StosSign_API_NoCertificate
+import StosSign_API
 import StosSign_Auth
+import StosSign_Common
 
 @MainActor
 class LoginViewModel: ObservableObject {
@@ -107,6 +108,7 @@ class LoginViewModel: ObservableObject {
             if isAuthenticationCancellationRequested {
                 throw CancellationError()
             }
+            print(error)
             throw error
         }
     }
