@@ -343,7 +343,36 @@ final class AnisetteDataHelper
             self.printOut("Skipping client_info fetch since all the properties we need aren't nil")
             return
         }
-        self.printOut("Trying to get client_info")
+        
+        self.printOut("Using custom client_info")
+                        
+        self.clientInfo = "<iMac18,3> <macOS;27.0;26A5378j> <com.apple.AuthKit/1 (com.apple.akd/1.0)>"
+        self.userAgent = "AuthKit/1 (Macintosh; OS X 27.0) (com.apple.akd/1.0)"
+        self.printOut("Client-Info: \(self.clientInfo!)")
+        self.printOut("User-Agent: \(self.userAgent!)")
+        
+        if Keychain.shared.identifier == nil {
+            self.printOut("Generating identifier")
+            var bytes = [Int8](repeating: 0, count: 16)
+            let status = SecRandomCopyBytes(kSecRandomDefault, bytes.count, &bytes)
+            
+            if status != errSecSuccess {
+                self.printOut("ERROR GENERATING IDENTIFIER!!! \(status)")
+                throw "Couldn't generate identifier"
+            }
+            
+            Keychain.shared.identifier = Data(bytes: &bytes, count: bytes.count).base64EncodedString()
+        }
+        
+        let decoded = Data(base64Encoded: Keychain.shared.identifier!)!
+        self.mdLu = decoded.sha256().hexEncodedString()
+        self.printOut("X-Apple-I-MD-LU: \(self.mdLu!)")
+        let uuid: UUID = decoded.object()
+        self.deviceId = uuid.uuidString.uppercased()
+        self.printOut("X-Mme-Device-Id: \(self.deviceId!)")
+
+        // Client info on Anisette Servers are out of date for latest GSA
+        /*
         let clientInfoURL = self.url!.appendingPathComponent("v3").appendingPathComponent("client_info")
         
         let (data, response) = try await URLSession.shared.data(from: clientInfoURL)
@@ -384,7 +413,7 @@ final class AnisetteDataHelper
                     } else { throw "v1 server is not supported" }
                 } else { throw "Couldn't fetch client info. The returned data may not be in JSON" }
             }
-
+        */
     }
     
     func fetchAnisetteV3(_ identifier: String, _ adiPb: String) async throws -> AnisetteData {
