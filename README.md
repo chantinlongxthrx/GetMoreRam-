@@ -3,7 +3,7 @@ A simple [StosSign](https://github.com/stossy11/StosSign) wrapper app that allow
 
 # How to use
 1. Sideload this app
-2. Go to settings, sign in your account that you used to sign the app you want to enable "Increased Memory Limit"
+2. Go to settings, sign in your account that you used to sign the app you want to enable "aditional entitlements"
 3. Go to "App IDs" page
 4. Tap Refresh
 5. Tap the app you want to enable "Increased Memory Limit"
