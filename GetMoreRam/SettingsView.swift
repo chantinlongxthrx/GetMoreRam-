@@ -52,6 +52,13 @@ struct SettingsView: View {
             } header: {
                 Text("Account")
             }
+            Section {
+                NavigationLink("Experiments") {
+                    ExperimentsView()
+                }
+            } header: {
+                Text("Experiments")
+            }
             
             Section {
                 HStack {
