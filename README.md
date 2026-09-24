@@ -14,4 +14,4 @@ A simple [StosSign](https://github.com/stossy11/StosSign) wrapper app that allow
 # Credits
 Stossy11 - For StosSign.
 SideStore - Anisette Data fetching codes are stolen from SideStore
-Hugeblack - this repo is forked from get more ram
+Hugeblack - this repo is forked from [get more ram](https://github.com/hugeBlack/GetMoreRam)
