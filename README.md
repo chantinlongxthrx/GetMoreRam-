@@ -12,6 +12,6 @@ A simple [StosSign](https://github.com/stossy11/StosSign) wrapper app that allow
 8. Check if you have "Increased Memory Limit"
 
 # Credits
-Stossy11 - For StosSign.
-SideStore - Anisette Data fetching codes are stolen from SideStore
-Hugeblack - this repo is forked from [get more ram](https://github.com/hugeBlack/GetMoreRam)
+1. Stossy11 - For StosSign.
+2. SideStore - Anisette Data fetching codes are stolen from SideStore
+3. Hugeblack - this repo is forked from [get more ram](https://github.com/hugeBlack/GetMoreRam)
