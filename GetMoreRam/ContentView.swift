@@ -8,25 +8,33 @@
 import SwiftUI
 
 struct ContentView: View {
+    @AppStorage("appTheme") private var appTheme = "system"
+
+    private var preferredScheme: ColorScheme? {
+        switch appTheme {
+        case "light":
+            return .light
+        case "dark":
+            return .dark
+        default:
+            return nil
+        }
+    }
+
     var body: some View {
         TabView {
             AppIDView(viewModel: AppIDViewModel())
                 .tabItem {
                     Label("App IDs".loc, systemImage: "square.stack.3d.up.fill")
                 }
+
             SettingsView(viewModel: LoginViewModel())
                 .tabItem {
                     Label("Settings".loc, systemImage: "gearshape.fill")
                 }
         }
-
         .environmentObject(DataManager.shared.model)
-        
-
-    }
-    
-    func test() {
-        
+        .preferredColorScheme(preferredScheme)
     }
 }
 
